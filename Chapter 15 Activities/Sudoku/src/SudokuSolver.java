@@ -37,10 +37,26 @@ public class SudokuSolver {
 
         // create the list of sets for each row (this.rows)
         // ...
-
+        for (int r=0; r<9; r++)
+        {
+            Set<Integer> row = new HashSet<>();
+            for (int c=0; c<9; c++)
+            {
+                row.add(grid[r][c]);
+            }
+            rows.add(row);
+        }
         // create the list of sets for each col (this.cols)
         // ...
-
+        for (int r=0; r<9; r++)
+        {
+            Set<Integer> col = new HashSet<>();
+            for (int c=0; c<9; c++)
+            {
+                col.add(grid[c][r]);
+            }
+            cols.add(col);
+        }
         // create the list of sets for each square (this.squares)
         /* the squares are added to the list row-by-row:
             0 1 2
@@ -48,7 +64,16 @@ public class SudokuSolver {
             6 7 8
          */
         // ...
-
+        
+        for (int r=0; r<3; r++)
+        {
+            Set<Integer> square = new HashSet<>();
+            for (int c=0; c<3; c++)
+            {
+                square.add(grid[r][c]);
+            }
+            squares.add(square);
+        }
         // create a hash set for [1..9] (this.nums)
         // ...
 
