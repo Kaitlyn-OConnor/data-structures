@@ -35,6 +35,9 @@ public class SudokuSolver {
             System.out.println("Cannot open: " + fileName);
         }
 
+        this.rows = new ArrayList<Set<Integer>>();
+        this.cols = new ArrayList<Set<Integer>>();
+
         // create the list of sets for each row (this.rows)
         // ...
         //rows = <Set<Integer>>
@@ -65,6 +68,7 @@ public class SudokuSolver {
             6 7 8
          */
         // ...
+        /* 
         for (int r=0; r<3; r++)
         {
             Set<Integer> square = new HashSet<>();
@@ -149,6 +153,26 @@ public class SudokuSolver {
             }
             squares.add(square);
         }
+*/
+
+        
+         this.squares = new ArrayList<Set<Integer>>();
+          int startRow = 0;
+          int startCol = 0;
+          for (int square = 0; square < N; square++)
+          {
+               Set<Integer> set = new HashSet<Integer>();
+               for (int row=startRow; row<startRow + M; row++)
+               {
+                   for (int col=startCol; col<startCol + M; col++)
+                  {
+                       if (this.grid[row][col]!=0)
+                           set.add(this.grid[row][col]);
+                   }
+               }
+          }
+         
+
         // create a hash set for [1..9] (this.nums)
         // ...
         Set<Integer> nums = new HashSet<>();
@@ -200,7 +224,9 @@ public class SudokuSolver {
             algorithm is correct.
          */
         Set<Integer> possibleNums = new HashSet<Integer>(this.nums);
-        possibleNums.removeAll(this.row.get(nextRow));
+        possibleNums.removeAll(this.rows.get(nextRow));
+        possibleNums.removeAll(this.cols.get(nextCol));
+        possibleNums.removeAll(this.squares.get(nextSquare));
         
         // ...
 
