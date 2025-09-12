@@ -226,7 +226,11 @@ public class SudokuSolver {
         Set<Integer> possibleNums = new HashSet<Integer>(this.nums);
         possibleNums.removeAll(this.rows.get(nextRow));
         possibleNums.removeAll(this.cols.get(nextCol));
-        possibleNums.removeAll(this.squares.get(nextSquare));
+        for (Integer num: possibleNums)
+        {
+            
+        }
+        //possibleNums.removeAll(this.squares.get(nextSquare));
         
         // ...
 
@@ -234,7 +238,7 @@ public class SudokuSolver {
         if (possibleNums.isEmpty()) {
             return false;
         }
-
+        
         // try each possible number
         for (Integer possibleNum : possibleNums) {
             // update the grid and all three corresponding sets with possibleNum
@@ -252,8 +256,7 @@ public class SudokuSolver {
                  */
                 // ...
             }
-        }
-
+        }  
         return false;
     }
 
