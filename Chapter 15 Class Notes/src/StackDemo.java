@@ -9,5 +9,25 @@ public class StackDemo
 {
     public static void main(String[] args)
     {
+        Stack<String> commands = new Stack<>();
+
+        // push commands onto the top of the stack
+        commands.push("Insert: 'Hello'");
+        commands.push("Insert: ','");
+        commands.push("Insert: ' '");
+        commands.push("Insert: 'World'");
+        commands.push("Insert: '?'");
+        commands.push("Delete: '?'");
+        commands.push("Insert: '!'");
+         
+        // print the stack, the top of is is the far right (the !)
+        System.out.println(commands);
+
+        // simulate the user pressing undo 4 times
+        for (int i=0;i<4;i++)
+        {
+            System.out.println("Undo "+commands.pop());
+        }
+         System.out.println(commands);
     }
 }
