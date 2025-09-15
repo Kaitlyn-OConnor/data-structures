@@ -17,7 +17,7 @@ public class SudokuSolver {
         squares = new ArrayList<>();
 
         // read the puzzle file
-        try (Scanner in = new Scanner(new File(fileName))) {
+        try (Scanner in = new Scanner(new File("data-structures/"+fileName))) {
 
             this.grid = new int[N][N];
 
