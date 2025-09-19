@@ -1,5 +1,6 @@
 import java.util.Stack;
 import java.util.Scanner;
+import java.util.*;
 
 /**
  * Class for simulating a driveway and a street, using stacks
@@ -22,7 +23,8 @@ public class Driveway
     public Driveway()
     {
         // Complete the constructor
-        ...
+        street = new Stack<>();
+        driveway = new Stack<>();
 
 
     }
@@ -35,7 +37,7 @@ public class Driveway
     public void add(int licensePlate)
     {
         // Complete this method
-        ...
+        driveway.add(licensePlate);
 
 
     }
@@ -48,8 +50,21 @@ public class Driveway
     public void remove(int licensePlate)
     {
         // Complete this method
-        ...
+        Integer top = driveway.pop();
+        while (!top.equals(licensePlate))
+        {
+          street.add(top);
+          top = driveway.pop();
+        }
+        System.out.println("The vehicle with license plate " + top + " has been removed.");
+        print();
 
+        while (street.size() != 0) //puts cars back in the driveway
+        {
+          driveway.add(street.pop());
+
+        }
+        System.out.println(driveway);
 
     }
 
@@ -60,11 +75,27 @@ public class Driveway
     {
         System.out.println("In Driveway, starting at first in (one license plate per line):");
         // Print the cars in the driveway here
-        ...
+        Stack<Integer> temp = new Stack<>();
+        for (int i=driveway.size(); i>0; i--)
+        {
+          temp.add(driveway.pop());
+        }
+        for (int i=temp.size(); i>0; i--)
+        {
+          System.out.println(temp.peek());
+          driveway.add(temp.pop());
+        }
 
         System.out.println("In Street, starting at first in (one license plate per line):");
         // Print the cars in the street here
-        ...
-
+        for (int i=street.size(); i>0; i--)
+        {
+          temp.add(street.pop());
+        }
+        for (int i=temp.size(); i>0; i--)
+        {
+          System.out.println(temp.peek());
+          street.add(temp.pop());
+        }
     }
 }
