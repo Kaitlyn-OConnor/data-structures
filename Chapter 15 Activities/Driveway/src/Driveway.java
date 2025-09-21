@@ -37,8 +37,8 @@ public class Driveway
     public void add(int licensePlate)
     {
         // Complete this method
-        driveway.add(licensePlate);
-
+          driveway.add(licensePlate);
+          print();
 
     }
 
@@ -56,7 +56,7 @@ public class Driveway
           street.add(top);
           top = driveway.pop();
         }
-        System.out.println("The vehicle with license plate " + top + " has been removed.");
+        //System.out.println("The vehicle with license plate " + top + " has been removed.");
         print();
 
         while (street.size() != 0) //puts cars back in the driveway
@@ -64,7 +64,7 @@ public class Driveway
           driveway.add(street.pop());
 
         }
-        System.out.println(driveway);
+        //System.out.println(driveway);
 
     }
 
@@ -75,27 +75,38 @@ public class Driveway
     {
         System.out.println("In Driveway, starting at first in (one license plate per line):");
         // Print the cars in the driveway here
-        Stack<Integer> temp = new Stack<>();
-        for (int i=driveway.size(); i>0; i--)
+        if (driveway.size()!=0)
         {
-          temp.add(driveway.pop());
+          Stack<Integer> temp = new Stack<>();
+          for (int car: driveway)
+          {
+            temp.add(car);
+          }
+          for (int car: temp)
+          {
+            System.out.println(car);
+          }
         }
-        for (int i=temp.size(); i>0; i--)
-        {
-          System.out.println(temp.peek());
-          driveway.add(temp.pop());
-        }
+        else
+          System.out.println("None");
 
         System.out.println("In Street, starting at first in (one license plate per line):");
         // Print the cars in the street here
-        for (int i=street.size(); i>0; i--)
+        if (street.size()!=0)
         {
-          temp.add(street.pop());
+          Stack<Integer> temp2 = new Stack<>();
+          for (int car: street)
+          {
+            temp2.add(car);
+          }
+          for (int car: temp2)
+          {
+            System.out.println(car);
+          }
         }
-        for (int i=temp.size(); i>0; i--)
-        {
-          System.out.println(temp.peek());
-          street.add(temp.pop());
-        }
+        else
+          System.out.println("None");
+        System.out.println();
+
     }
 }
