@@ -6,6 +6,7 @@ public class Grid
     int[][] pixels = new int[SIZE][SIZE];
     Pair start = new Pair();
     Pair next = new Pair();
+    Pair coordinate = new Pair();
     Stack<Pair> directions;
 
     /**
@@ -17,41 +18,42 @@ public class Grid
         start.pair(row,column);
         directions.add(start);
         int fill = 1;
-        Pair[] addList;
 
         while (directions.size() != 0) // goes through all the possible directions and fills in the pixels
         {
-            Pair coordinate = directions.pop();
-            //next.pair(row,column);
+            coordinate = directions.pop();
 
-            while (next.getRow()-1 != -1 && pixels[next.getRow()-1][next.getColumn()]==0)
+            if (pixels[coordinate.getRow()][coordinate.getColumn()]==0)
             {
-                // updates next so it is the current pixel
-                next.pair(next.getRow()-1, next.getColumn());
-
                 // fills in the pixel with the correct value
-                pixels[next.getRow()][next.getColumn()] = fill;
+                pixels[coordinate.getRow()][coordinate.getColumn()] = fill;
                 fill++;
 
-                // checks if that coordinate has other branching paths and adds that to directions
-                if (next.getColumn()+1 != 11 && pixels[next.getRow()][next.getColumn()+1]==0)
+                // checks if that coordinate has other open pixel neighbors and adds those coordinates to directions
+                if (coordinate.getRow()-1 != -1 && pixels[coordinate.getRow()-1][coordinate.getColumn()]==0) //north
                 {
-                    start.pair(row,next.getColumn()+1);
-                    directions.add(start);
+                    next.pair(coordinate.getRow()-1, coordinate.getColumn());
+                    directions.add(next);
                 }
-                if (next.getColumn()-1 != -1 && pixels[next.getRow()][next.getColumn()-1]==0)
+                if (coordinate.getColumn()+1 != 10 && pixels[coordinate.getRow()][coordinate.getColumn()+1]==0) // east
                 {
-                    start.pair(row,next.getColumn()-1);
-                    directions.add(start);
+                    next.pair(coordinate.getRow(), coordinate.getColumn()+1);
+                    directions.add(next);
+                }
+                if (coordinate.getRow()+1 != 10 && pixels[coordinate.getRow()+1][coordinate.getColumn()]==0) //south
+                {
+                    next.pair(coordinate.getRow()+1, coordinate.getColumn());
+                    directions.add(next);
+                }
+                if (coordinate.getColumn()-1 != -1 && pixels[coordinate.getRow()][coordinate.getColumn()-1]==0) // west
+                {
+                    next.pair(coordinate.getRow(), coordinate.getColumn()-1);
+                    directions.add(next);
                 }
 
-                
+            }
         }
-
-
-
-
-    }
+     }
 
     @Override
     public String toString()
@@ -65,4 +67,6 @@ public class Grid
         }
         return r;
     }
+
 }
+
