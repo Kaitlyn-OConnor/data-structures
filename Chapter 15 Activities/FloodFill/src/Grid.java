@@ -5,7 +5,6 @@ public class Grid
     private static final int SIZE = 10;
     int[][] pixels = new int[SIZE][SIZE];
     Pair start = new Pair();
-    Pair next = new Pair();
     Pair coordinate = new Pair();
     Stack<Pair> directions;
 
@@ -32,27 +31,35 @@ public class Grid
                 // checks if that coordinate has other open pixel neighbors and adds those coordinates to directions
                 if (coordinate.getRow()-1 != -1 && pixels[coordinate.getRow()-1][coordinate.getColumn()]==0) //north
                 {
-                    next.pair(coordinate.getRow()-1, coordinate.getColumn());
-                    directions.add(next);
+                    Pair nextN = new Pair();
+                    nextN.pair(coordinate.getRow()-1, coordinate.getColumn());
+                    directions.add(nextN);
                 }
                 if (coordinate.getColumn()+1 != 10 && pixels[coordinate.getRow()][coordinate.getColumn()+1]==0) // east
                 {
-                    next.pair(coordinate.getRow(), coordinate.getColumn()+1);
-                    directions.add(next);
+                    Pair nextE = new Pair();
+                    nextE.pair(coordinate.getRow(), coordinate.getColumn()+1);
+                    directions.add(nextE);
                 }
                 if (coordinate.getRow()+1 != 10 && pixels[coordinate.getRow()+1][coordinate.getColumn()]==0) //south
                 {
-                    next.pair(coordinate.getRow()+1, coordinate.getColumn());
-                    directions.add(next);
+                    Pair nextS = new Pair();
+                    nextS.pair(coordinate.getRow()+1, coordinate.getColumn());
+                    directions.add(nextS);
                 }
                 if (coordinate.getColumn()-1 != -1 && pixels[coordinate.getRow()][coordinate.getColumn()-1]==0) // west
                 {
-                    next.pair(coordinate.getRow(), coordinate.getColumn()-1);
-                    directions.add(next);
+                    Pair nextW = new Pair();
+                    nextW.pair(coordinate.getRow(), coordinate.getColumn()-1);
+                    directions.add(nextW);
                 }
-
+                /*for (Pair i: directions)
+                {
+                    System.out.print("(" + i.getRow() + " " + i.getColumn() + ")");
+                }*/
             }
         }
+        System.out.println();
      }
 
     @Override
