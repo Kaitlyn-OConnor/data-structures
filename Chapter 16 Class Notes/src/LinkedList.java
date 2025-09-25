@@ -8,12 +8,18 @@ import java.util.NoSuchElementException;
 */
 public class LinkedList
 {
+    // first refers to the first Node in the list
+    // if the list is empty, first will be null
+    private Node first;
 
 
     /**
         Constructs an empty linked list.
     */
-
+    public LinkedList()
+    {
+        this.first = null;
+    }
 
 
 
@@ -21,7 +27,12 @@ public class LinkedList
         Returns the first element in the linked list.
         @return the first element in the linked list
     */
-
+    public Object getFirst()
+    {
+        if (this.first == null)
+            throw new NoSuchElementException();
+        return this.first.data; //don't need accessor method for data because LinkedList has access to Node stuff
+    }
 
 
 
@@ -53,6 +64,12 @@ public class LinkedList
 
 
     //Class Node
+    // Node is static because it does NOT need to access anything in the LinkedList class
+    // The object mdae from this will store information, not interact with the class
+    static class Node{
+        public Node next;
+        public Object data; 
+    }
 
 
     class LinkedListIterator //implements ListIterator
