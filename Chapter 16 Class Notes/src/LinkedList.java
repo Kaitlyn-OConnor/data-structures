@@ -62,6 +62,74 @@ public class LinkedList
         this.first = newNode;
     }
 
+    /*
+    // size non-recursive
+    public Integer size()
+    {
+        LinkedListIterator iterator = new LinkedListIterator();
+        int size = 0;
+        while (iterator.hasNext())
+        {
+            size++;
+            iterator.next();
+        }
+        return size;
+    }
+    */
+
+    // recursive size
+    public Integer size()
+    {
+        if (this.first != null)
+        {
+            if (this.first.next != null)
+            {
+                this.first = this.first.next;
+                return size() + 1;
+            }
+            else 
+            {
+                return 1;
+            }
+        }
+        else
+            return 0;
+    }
+
+    /* 
+    // contains non-recursive
+    public boolean contains(Object obj)
+    {
+        LinkedListIterator iterator = new LinkedListIterator();
+        boolean contains = false;
+        for (int i=size(); i>0; i--)
+        {
+            Object current = iterator.next();
+            if (current.equals(obj))
+                contains = true;
+        }
+
+        return contains;
+    } */
+
+    // recursive contains
+    public boolean contains(Object obj)
+    {
+        if (this.first != null)
+        {
+            if (this.first.next != null)
+            {
+                if (this.first.equals(obj))
+                {
+                    
+                }
+                this.first = this.first.next;
+            }
+        }
+        else
+            return false;
+    }
+
 
 
     /**

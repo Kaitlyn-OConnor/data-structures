@@ -13,5 +13,8 @@ public class ListDemo
         students.addFirst("Jonathan");
 
         System.out.println(students);
+        System.out.println(students.size());
+        System.out.println(students.contains("Cam"));
+        System.out.println(students.contains("Kaitlyn"));
     }
 }
