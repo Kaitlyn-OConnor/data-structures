@@ -62,7 +62,7 @@ public class LinkedList
         this.first = newNode;
     }
 
-    /*
+    /* 
     // size non-recursive
     public Integer size()
     {
@@ -76,7 +76,7 @@ public class LinkedList
         return size;
     }
     */
-
+ 
     // recursive size
     public Integer size()
     {
@@ -102,7 +102,7 @@ public class LinkedList
     {
         LinkedListIterator iterator = new LinkedListIterator();
         boolean contains = false;
-        for (int i=size(); i>0; i--)
+        while (iterator.hasNext())
         {
             Object current = iterator.next();
             if (current.equals(obj))
@@ -110,24 +110,30 @@ public class LinkedList
         }
 
         return contains;
-    } */
-
+    }
+*/
     // recursive contains
     public boolean contains(Object obj)
     {
         if (this.first != null)
         {
-            if (this.first.next != null)
-            {
-                if (this.first.equals(obj))
+            if (this.first.data.equals(obj))
                 {
-                    
+                    return true;
                 }
+            //System.out.println(this.first.next);
+            else 
+            {
+                System.out.println("here");
                 this.first = this.first.next;
+                return contains(obj);
             }
         }
         else
+        {
+            System.out.println("here2");
             return false;
+        }
     }
 
 
