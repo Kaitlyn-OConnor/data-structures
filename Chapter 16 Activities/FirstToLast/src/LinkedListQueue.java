@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
     Add a method firstToLast to this implementation of a queue.
     The method moves the element at the head of the queue to
@@ -23,10 +25,22 @@ public class LinkedListQueue
     */
     public void firstToLast()
     {
-        . . .
+        Node originalTail = new Node();
+        //ArrayList<Node> temp = new ArrayList<>();
 
-
-
+        originalTail = tail;
+        while (!head.data.equals(originalTail.data)) 
+        {
+            //temp.add(current);
+            Object x = remove();
+            add(x);
+            this.head = this.head.next;
+            //current = head;
+        }
+        //reverses the last element
+        Object x = remove();
+        add(x);
+        this.head = this.head.next;
     }
 
     /**
