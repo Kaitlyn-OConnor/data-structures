@@ -100,41 +100,62 @@ public class LinkedList
     // contains non-recursive
     public boolean contains(Object obj)
     {
-        LinkedListIterator iterator = new LinkedListIterator();
+        Node current = new Node();
+        current = this.first;
         boolean contains = false;
-        while (iterator.hasNext())
+        if (current != null)
         {
-            Object current = iterator.next();
-            if (current.equals(obj))
-                contains = true;
+            while (current.next != null)
+            {
+                System.out.println(current.data + " " + obj);
+                if (current.data.equals(obj))
+                    contains = true;
+                current = current.next;
+            }
+            if (current.data.equals(obj))
+                    contains = true;
         }
-
         return contains;
     }
 */
     // recursive contains
     public boolean contains(Object obj)
     {
-        if (this.first != null)
+        Node current = new Node();
+        current = this.first;
+        if (current != null)
         {
-            if (this.first.data.equals(obj))
-                {
-                    return true;
-                }
-            //System.out.println(this.first.next);
-            else 
+            if (current.data.equals(obj))
             {
-                System.out.println("here");
-                this.first = this.first.next;
-                return contains(obj);
+                return true;
+            }
+            else
+            { 
+                current = current.next;
+                return containsRecursive(obj, current);
             }
         }
         else
-        {
-            System.out.println("here2");
             return false;
+    }
+    // helper method for contains
+    public boolean containsRecursive(Object obj, Node current)
+    {
+        if (current.data.equals(obj))
+            return true;
+        else
+        {
+            if (current.next != null)
+            {
+                current = current.next;
+                return containsRecursive(obj, current);
+            }
+            else
+                return false;
         }
     }
+        
+    
 
 
 
