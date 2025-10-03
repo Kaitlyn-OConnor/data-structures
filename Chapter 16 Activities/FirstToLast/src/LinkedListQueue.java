@@ -25,22 +25,15 @@ public class LinkedListQueue
     */
     public void firstToLast()
     {
-        Node originalTail = new Node();
-        //ArrayList<Node> temp = new ArrayList<>();
+        Node front = new Node();
+        front.data = remove();
 
-        originalTail = tail;
-        while (!head.data.equals(originalTail.data)) 
-        {
-            //temp.add(current);
-            Object x = remove();
-            add(x);
-            this.head = this.head.next;
-            //current = head;
-        }
-        //reverses the last element
-        Object x = remove();
-        add(x);
-        this.head = this.head.next;
+        Node back = new Node();
+        back.data = tail.data;
+        tail.next = front;
+        tail = front;
+        
+        
     }
 
     /**
