@@ -1,3 +1,4 @@
+import java.util.*;
 /**
     Add a method lastToFirst to this implementation of a queue.
     The method moves the element at the tail of the queue
@@ -22,12 +23,42 @@ public class LinkedListQueue
     */
     public void lastToFirst()
     {
-        . . .
+       /* 
+        ArrayList<Object> temp = new ArrayList<>();
+        Node first = new Node();
+        first.data = remove();
+        Node last = null;
+        while (tail != null)
+        {
+            Node current = new Node();
+            temp.add(current);
+            if (current.next != null)
+                current.data = remove();
+            else   
+                last = current;
+        }
+        add(last);
 
+        for (int i=temp.size(); i>0; i--)
+        {
+            add(temp.remove(i-1));
+        }
+*/
+        Node last = new Node();
+        last = tail;
+        ArrayList<Object> before = new ArrayList<>();
+        while (!before.contains(tail.data));
+        {
+            before.add(remove());
+        }
+        add(last);
+        before.remove(tail);
+        while (before.size() != 0)
+        {
+            add(before.remove(0));
+        }
 
-
-
-
+        
     }
 
     /**
