@@ -23,42 +23,39 @@ public class LinkedListQueue
     */
     public void lastToFirst()
     {
-       /* 
-        ArrayList<Object> temp = new ArrayList<>();
-        Node first = new Node();
-        first.data = remove();
-        Node last = null;
-        while (tail != null)
-        {
-            Node current = new Node();
-            temp.add(current);
-            if (current.next != null)
-                current.data = remove();
-            else   
-                last = current;
-        }
-        add(last);
+       Node end = new Node();
+       end.data=tail.data;
+       Node middle = new Node();
+       middle.data = head.next.data;
+       tail.data = middle.data;
+       head.next.data = head.data;
+       head.data = end.data;
 
-        for (int i=temp.size(); i>0; i--)
-        {
-            add(temp.remove(i-1));
-        }
-*/
-        Node last = new Node();
-        last = tail;
-        ArrayList<Object> before = new ArrayList<>();
-        while (!before.contains(tail.data));
-        {
-            before.add(remove());
-        }
-        add(last);
-        before.remove(tail);
-        while (before.size() != 0)
-        {
-            add(before.remove(0));
-        }
 
-        
+
+/* 
+        Node end = new Node();
+        end.data = tail.data;
+        System.out.println(tail.data);
+        Node checker = new Node();
+        Node previous = new Node();
+        checker = head;
+        while (!checker.equals(tail))
+        {
+            Node next1 = new Node();
+            next1 = checker.next;
+            previous.data=checker.data;
+            System.out.println(checker.data + " " + next1.data + " "+ previous.data);
+            Node updatePrevious = new Node();
+            updatePrevious.data = next1.data;
+            next1.data = previous.data;
+            previous.data = updatePrevious.data;
+            System.out.println(checker.data + " " + next1.data+ " "+ previous.data);
+            checker = next1;
+            System.out.println(checker.data + " " + next1.data+ " "+ previous.data);
+        }
+        head.data = end.data;
+        */
     }
 
     /**

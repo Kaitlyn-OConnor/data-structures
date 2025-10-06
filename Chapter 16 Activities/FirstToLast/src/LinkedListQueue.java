@@ -32,6 +32,7 @@ public class LinkedListQueue
         back.data = tail.data;
         tail.next = front;
         tail = front;
+
         
         
     }
