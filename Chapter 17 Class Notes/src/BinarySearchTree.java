@@ -62,22 +62,69 @@ public class BinarySearchTree
     {
         Node toBeRemoved = this.root;
         boolean found = false;
+        Node parent = null;
 
         while (!found && toBeRemoved != null)
         {
             int diff = obj.compareTo(toBeRemoved.data);
             if (diff == 0)
                 found = true;
-            else if (diff < 0)
+            else if (diff < 0){
+                parent = toBeRemoved;
                 toBeRemoved = toBeRemoved.left;
-            else 
+            }
+            else {
+                parent = toBeRemoved;
                 toBeRemoved =  toBeRemoved.right;
+            {
         }
         if (!found)
             return; // thing wanted to remove isn't there
-        else
+        
+         // Case 1 and Case 2 (at least 1 child is null)
+        if (toBeRemoved.left == null || toBeRemoved.right == null)
         {
+            Node newChild;
+
+            if (toBeRemoved.left == null)
+            {
+                newChild = toBeRemoved.right;
+            }
+            else
+                newChild = toBeRemoved.left;
             
+            // Remove the root if the parent is null
+            if (parent == null)
+            {
+                this.root = newChild;
+            }
+            else {
+                parent.right = newChild;
+            }
+
+            return;
+
+            // Case 3: Remove a node with 2 children and find the least element of the right subtree, since least element will replace removed node
+            Node leastParent = toBeRemoved;
+            Node least = toBeRemoved.right;
+
+            while (least.left != null)
+            {
+                leastParent = least;
+                least = least.left; // moving down the right subtree to the left as far as we can to get the smallest value greater than the removed node
+            }
+
+            // move the data to the node being removed
+            toBeRemoved.data = least.data;
+            // unlink the least child from its past spot
+            if (leastParent == toBeRemoved)
+            {
+                leastParent.right = least.right; 
+            }
+            else 
+            {
+                leastParent.left = least.right;
+            }
         }
     }
     
@@ -86,7 +133,9 @@ public class BinarySearchTree
     */
     public void print()
     {   
-        
+        // print the tree using inorder traveral
+        print(this.root);
+        System.out.println();
     }   
 
     /**
@@ -95,7 +144,14 @@ public class BinarySearchTree
     */
     private static void print(Node parent)
     {   
-        
+        if (parent == null)
+        {
+            return;
+        }
+
+        print(parent.left); // first goes down the left side
+        System.out.println(parent.data + " " ); // prints the root
+        print(parent.right); // now goes down the right side
     }
 
     /**
