@@ -94,4 +94,39 @@ public class Tree
             Tree.preorder(child, v);
         }
       }
+
+
+      public void depthFirst(){
+        depthFirstHelper(root);
+      }
+
+      public void depthFirstHelper(Node node){
+        if (node == null) {
+            return;
+      }
+        for (Node child: node.children) {
+            depthFirstHelper(child);
+          }
+    }
+
+      public static void postOrder(Node n, Visitor v)
+      {
+        if (n == null){
+            return;
+        }
+
+        for (Node child: n.children) {
+            Tree.postOrder(child, v);
+            }
+    
+        v.visit(n.data);
+    
+      }
+
+      public void postOrder(Visitor v) {
+        Tree.postOrder(this.root, v);
+      }
+    
+
+
 }
